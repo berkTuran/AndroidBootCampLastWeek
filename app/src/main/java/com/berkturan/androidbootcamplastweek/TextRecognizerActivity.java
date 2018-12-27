@@ -68,26 +68,26 @@ public class TextRecognizerActivity extends AppCompatActivity {
     }
 
     private void detectTxt() {
-        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(imageBitmap);
-        FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance().getOnDeviceTextRecognizer();
-        detector.processImage(image).addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
-            @Override
-            public void onSuccess(FirebaseVisionText firebaseVisionText) {
-                processTxt(firebaseVisionText);
-            }
-        });
-    }
+            FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(imageBitmap);
+            FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance().getOnDeviceTextRecognizer();
+            detector.processImage(image).addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
+                @Override
+                public void onSuccess(FirebaseVisionText firebaseVisionText) {
+                    processTxt(firebaseVisionText);
+                }
+            });
+        }
 
-    private void processTxt(FirebaseVisionText text) {
-        List<FirebaseVisionText.TextBlock> blocks = text.getTextBlocks();
-        if (blocks.size() == 0) {
-            Toast.makeText(TextRecognizerActivity.this, "No Text :(", Toast.LENGTH_LONG).show();
-            return;
-        }
-        for (FirebaseVisionText.TextBlock block : text.getTextBlocks()) {
-            String txt = block.getText();
-            txtView.setTextSize(24);
-            txtView.setText(txt);
-        }
+        private void processTxt(FirebaseVisionText text) {
+            List<FirebaseVisionText.TextBlock> blocks = text.getTextBlocks();
+            if (blocks.size() == 0) {
+                Toast.makeText(TextRecognizerActivity.this, "No Text :(", Toast.LENGTH_LONG).show();
+                return;
+            }
+            for (FirebaseVisionText.TextBlock block : text.getTextBlocks()) {
+                String txt = block.getText();
+                txtView.setTextSize(24);
+                txtView.setText(txt);
+            }
     }
 }

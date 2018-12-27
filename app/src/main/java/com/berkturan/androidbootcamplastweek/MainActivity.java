@@ -27,6 +27,7 @@ import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetectorOptions;
 import com.google.firebase.ml.vision.face.FirebaseVisionFaceLandmark;
 import com.google.firebase.ml.vision.text.FirebaseVisionText;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView txtView;
     private Bitmap imageBitmap;
     static  String details = "";
+    static ArrayList<FirebaseVisionFace> firebaseVisionFaces = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,40 +80,17 @@ public class MainActivity extends AppCompatActivity {
                                                 // Task completed successfully
                                                 // ...
                                                 for (FirebaseVisionFace face : faces) {
-                                                    Rect bounds = face.getBoundingBox();
-                                                    float rotY = face.getHeadEulerAngleY();  // Head is rotated to the right rotY degrees
-                                                    float rotZ = face.getHeadEulerAngleZ();  // Head is tilted sideways rotZ degrees
-                                                    // If landmark detection was enabled (mouth, ears, eyes, cheeks, and
-                                                    // nose available):
-                                                    FirebaseVisionFaceLandmark leftEar = face.getLandmark(FirebaseVisionFaceLandmark.LEFT_EAR);
-                                                    if (leftEar != null) {
-                                                        FirebaseVisionPoint leftEarPos = leftEar.getPosition();
-                                                        details+="LeftEarPos : "+String.valueOf(leftEarPos.toString());
-                                                    }
+                                                    firebaseVisionFaces.add(face);
 
-                                                    // If contour detection was enabled:
-                                                    List<FirebaseVisionPoint> leftEyeContour =
-                                                            face.getContour(FirebaseVisionFaceContour.LEFT_EYE).getPoints();
-                                                    List<FirebaseVisionPoint> upperLipBottomContour =
-                                                            face.getContour(FirebaseVisionFaceContour.UPPER_LIP_BOTTOM).getPoints();
-
-                                                    // If classification was enabled:
-                                                    if (face.getSmilingProbability() != FirebaseVisionFace.UNCOMPUTED_PROBABILITY) {
-                                                        float smileProb = face.getSmilingProbability();
-                                                        details+="\nSmilingProp : "+String.valueOf(smileProb);
-                                                    }
-                                                    if (face.getRightEyeOpenProbability() != FirebaseVisionFace.UNCOMPUTED_PROBABILITY) {
-                                                        float rightEyeOpenProb = face.getRightEyeOpenProbability();
-                                                        details+="\nRightEyeOpenProb : "+String.valueOf(rightEyeOpenProb);
-                                                    }
-
-                                                    // If face tracking was enabled:
-                                                    if (face.getTrackingId() != FirebaseVisionFace.INVALID_ID) {
-                                                        int id = face.getTrackingId();
-                                                        details+="\nId : "+String.valueOf(id);
+                                                }
+                                                for(FirebaseVisionFace face : faces){
+                                                    if(face.equals(firebaseVisionFaces.get(0))){
+                                                        txtView.setText("Gülden");
+                                                    }else{
+                                                        txtView.setText("Tanınmıyorsun");
                                                     }
                                                 }
-                                                txtView.setText(details);
+
                                             }
                                         })
                                 .addOnFailureListener(
