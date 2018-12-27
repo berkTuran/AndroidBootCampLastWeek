@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "29753133120",
+    "firebase_url": "https://androidbootcamplastweek.firebaseio.com",
+    "project_id": "androidbootcamplastweek",
+    "storage_bucket": "androidbootcamplastweek.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29753133120:android:fc6ffb2adbbefa31",
+        "android_client_info": {
+          "package_name": "com.berkturan.androidbootcamplastweek"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "29753133120-s8cdrsqg03dldsed677r072h38so2e6f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.berkturan.androidbootcamplastweek",
+            "certificate_hash": "fd2eceaaa78c819ada45c95f1987e04d35bbaa24"
+          }
+        },
+        {
+          "client_id": "29753133120-2lb9lonfg9pf8bhkb1m9r9m5v98a9veo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWY1OexP_94CXWLoOKOdOT-4FVdgXIooE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "29753133120-2lb9lonfg9pf8bhkb1m9r9m5v98a9veo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
